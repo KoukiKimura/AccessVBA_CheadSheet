@@ -1,0 +1,24 @@
+'Google Chromeを起動し指定URLに移動
+
+	Dim strURL As String
+	Dim strChr As String
+	Dim wsh As Object
+	Set wsh = CreateObject("WScript.Shell")
+
+	'Google SpreadSheet　の公開アドレス
+	strURL = "https://docs.google.com/spreadsheets/d/1Nz5in3EUx1w0GadyUcdtH8CzWrgFoVsY/edit"
+	'Google Chrome のパス
+    	strChr = """" & "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" & """"
+
+	'起動オプションを指定して Chrome を起動
+	wsh.Run (strChr & " --new-window --window-position=-10,-20 --window-size=1000,1000 -url -remote-debugging-port=9222 -profile-directory=" & "Default" & " " & strURL)
+
+------------------------------------------------------------------------------------
+<< Google Chrome 起動オプション >>
+
+ --new-window			: 新しいウィンドウで起動
+ --window-position = x,y	: ウィンドウの位置（すでにウィンドウが開いているプロファイルを使用している場合は、そのウィンドウの位置に起動する）
+ --window-size = w,h		: ウィンドウの大きさ指定（すでにウィンドウが開いているプロファイルを使用している場合は、そのウィンドウの大きさで起動す）
+ -url				: 起動時に URL を指定して起動。 オプションの後ろであれば直近でなくてもよい（？
+ -remote-debugging-port= XXXXX	: Selenimue 用のポートを指定して起動
+ -profile-directory= "Defalut	: プロファイルをしていして起動。未指定時は "Defalut" を使用 
